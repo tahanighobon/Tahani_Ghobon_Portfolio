@@ -1,0 +1,3183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tahani A. Ghobon | Portfolio</title>
+  <meta
+    name="description"
+    content="Tahani A. Ghobon - Instructional Designer, Web VR & 3D Content creator, Immersive Environment Designer, and educator."
+  />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <style>
+    :root {
+      --bg: #292966;
+      --bg-2: #1f1f54;
+      --surface: rgba(41, 41, 102, 0.78);
+      --surface-2: rgba(92, 92, 153, 0.34);
+      --card: rgba(41, 41, 102, 0.72);
+      --card-strong: rgba(41, 41, 102, 0.92);
+      --text: #f6f4ff;
+      --muted: #ccccff;
+      --soft: #a3a3cc;
+      --accent: #ccccff;
+      --accent-2: #a3a3cc;
+      --accent-3: #5c5c99;
+      --line: rgba(204,204,255,0.12);
+      --glow: 0 20px 60px rgba(16,16,46,0.42);
+      --glow-soft: 0 12px 36px rgba(16,16,46,0.28);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --radius-sm: 14px;
+      --max: 1280px;
+      --nav-h: 78px;
+      --transition: 0.35s ease;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--nav-h) + 22px);
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 12% 18%, rgba(204,204,255,0.18), transparent 24%),
+        radial-gradient(circle at 86% 16%, rgba(163,163,204,0.16), transparent 22%),
+        radial-gradient(circle at 30% 82%, rgba(92,92,153,0.14), transparent 20%),
+        linear-gradient(180deg, #292966 0%, #252560 32%, #1f1f54 68%, #161640 100%);
+      overflow-x: hidden;
+      position: relative;
+      --cursor-x: 50vw;
+      --cursor-y: 50vh;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255,255,255,0.06), transparent 28%),
+        linear-gradient(135deg, transparent 0%, rgba(204,204,255,0.07) 35%, rgba(163,163,204,0.07) 65%, transparent 100%);
+      pointer-events: none;
+      animation: auraShift 16s ease-in-out infinite alternate;
+      z-index: 0;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(520px circle at var(--cursor-x) var(--cursor-y), rgba(204,204,255,0.14), transparent 42%),
+        radial-gradient(300px circle at calc(var(--cursor-x) + 6%) calc(var(--cursor-y) - 10%), rgba(255,255,255,0.06), transparent 36%);
+      opacity: 0.92;
+      transition: opacity 0.25s ease;
+    }
+
+    .particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(116,217,210,0.45);
+      box-shadow: 0 0 18px rgba(116,217,210,0.34);
+      animation: driftParticle var(--duration, 16s) linear infinite;
+      animation-delay: var(--delay, 0s);
+      opacity: var(--opacity, 0.5);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    ::selection {
+      background: rgba(204,204,255,0.28);
+      color: white;
+    }
+
+    .page-shell {
+      position: relative;
+      z-index: 1;
+    }
+
+    .ambient {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(28px);
+      opacity: 0.48;
+      mix-blend-mode: screen;
+      animation: floatOrb 18s ease-in-out infinite;
+    }
+
+    .orb.one {
+      width: 320px;
+      height: 320px;
+      left: -70px;
+      top: 0;
+      background: rgba(204,204,255,0.18);
+    }
+
+    .orb.two {
+      width: 420px;
+      height: 420px;
+      right: -110px;
+      top: 20%;
+      background: rgba(163,163,204,0.16);
+      animation-delay: -5s;
+    }
+
+    .orb.three {
+      width: 290px;
+      height: 290px;
+      left: 12%;
+      bottom: 8%;
+      background: rgba(92,92,153,0.16);
+      animation-delay: -9s;
+    }
+
+    .orb.four {
+      width: 260px;
+      height: 260px;
+      right: 12%;
+      bottom: -40px;
+      background: rgba(204,204,255,0.12);
+      animation-delay: -12s;
+    }
+
+    .grid-overlay {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 34px 34px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.55), transparent 85%);
+      z-index: 0;
+      opacity: 0.55;
+    }
+
+    .container {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+    }
+
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
+      box-shadow: 0 0 24px rgba(204,204,255,0.40);
+      z-index: 1200;
+      transform-origin: left center;
+    }
+
+    .topbar {
+      position: fixed;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-18px);
+      width: min(calc(100% - 24px), 1180px);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 1100;
+      transition: opacity 0.45s ease, transform 0.45s ease;
+    }
+
+    .topbar.visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+      pointer-events: auto;
+    }
+
+    .topbar-inner {
+      min-height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 14px 18px;
+      border-radius: 24px;
+      background: rgba(8, 13, 26, 0.72);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.09);
+      box-shadow: 0 18px 44px rgba(0,0,0,0.26);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: fit-content;
+    }
+
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      background: linear-gradient(135deg, rgba(204,204,255,0.85), rgba(163,163,204,0.82));
+      color: white;
+      box-shadow: 0 12px 28px rgba(163,163,204,0.22);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 25%, rgba(255,255,255,0.4), transparent 75%);
+      transform: translateX(-120%);
+      animation: shine 5.5s linear infinite;
+    }
+
+    .brand-copy {
+      display: grid;
+      gap: 2px;
+    }
+
+    .brand-copy strong {
+      font-size: 0.96rem;
+      letter-spacing: 0.01em;
+    }
+
+    .brand-copy span {
+      color: var(--soft);
+      font-size: 0.78rem;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .nav-links a {
+      padding: 10px 14px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: 1px solid transparent;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 7px;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(116,217,210,0), rgba(116,217,210,0.92) 24%, rgba(255,255,255,0.96) 50%, rgba(116,217,210,0.92) 76%, rgba(116,217,210,0));
+      transform: scaleX(0.32);
+      transform-origin: center;
+      opacity: 0;
+      transition: transform 0.35s ease, opacity 0.35s ease;
+      pointer-events: none;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: white;
+      background:
+        radial-gradient(circle at 50% -20%, rgba(116,217,210,0.22), transparent 62%),
+        linear-gradient(135deg, rgba(116,217,210,0.16), rgba(116,217,210,0.05));
+      border-color: rgba(116,217,210,0.28);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), inset 0 0 0 1px rgba(116,217,210,0.16), 0 10px 20px rgba(0,0,0,0.14), 0 0 24px rgba(116,217,210,0.12);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+      flex: 1;
+      flex-wrap: wrap;
+    }
+
+    .theme-toggle {
+      min-width: fit-content;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.88rem;
+      font-weight: 700;
+      transition: var(--transition);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.14);
+    }
+
+    .theme-toggle:hover {
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.10);
+      border-color: rgba(255,255,255,0.16);
+    }
+
+    .theme-toggle-track {
+      width: 44px;
+      height: 24px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.14);
+      position: relative;
+      flex-shrink: 0;
+      transition: var(--transition);
+    }
+
+    .theme-toggle-thumb {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(204,204,255,0.88));
+      box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+      transition: transform var(--transition), background var(--transition);
+    }
+
+    body[data-theme="light"] .theme-toggle-track {
+      background: rgba(99,102,241,0.22);
+    }
+
+    body[data-theme="light"] .theme-toggle-thumb {
+      transform: translateX(20px);
+      background: linear-gradient(135deg, #ffffff, #eef2ff);
+    }
+
+    .landing {
+      min-height: 100svh;
+      display: grid;
+      align-items: center;
+      padding: 42px 0 36px;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .landing-layout {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 26px;
+      align-items: center;
+    }
+
+    .landing-panel,
+    .hero-visual,
+    .card,
+    .footer-card {
+      background: linear-gradient(180deg, rgba(12,18,33,0.78), rgba(11,18,34,0.56));
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,0.09);
+      box-shadow: var(--glow);
+      border-radius: var(--radius-xl);
+    }
+
+    .landing-panel {
+      padding: 34px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .landing-panel::before,
+    .hero-visual::before,
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.04) 48%, transparent 100%);
+      transform: translateX(-120%);
+      pointer-events: none;
+    }
+
+    .landing-panel:hover::before,
+    .hero-visual:hover::before,
+    .card:hover::before {
+      animation: sweep 1.2s ease;
+    }
+
+    .intro-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(204,204,255,0.12);
+      border: 1px solid rgba(204,204,255,0.22);
+      color: #d7d1ff;
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .intro-badge span {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--accent-2), var(--accent));
+      box-shadow: 0 0 0 7px rgba(204,204,255,0.12);
+      animation: pulse 2.8s ease-in-out infinite;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.8rem, 6vw, 5.7rem);
+      line-height: 0.93;
+      letter-spacing: -0.05em;
+    }
+
+    .position-line {
+      margin-top: 18px;
+      font-size: clamp(1rem, 1.65vw, 1.18rem);
+      color: var(--muted);
+      line-height: 1.85;
+      max-width: 760px;
+    }
+
+    .quote-block {
+      margin-top: 24px;
+      padding: 20px 22px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      position: relative;
+    }
+
+    .quote-block::before {
+      content: "“";
+      position: absolute;
+      top: -10px;
+      left: 18px;
+      font-size: 3rem;
+      line-height: 1;
+      color: rgba(255,255,255,0.18);
+    }
+
+    .quote-block p {
+      margin: 0;
+      color: var(--text);
+      line-height: 1.9;
+      font-size: 1rem;
+    }
+
+    .quote-block small {
+      display: inline-block;
+      margin-top: 10px;
+      color: var(--soft);
+      letter-spacing: 0.02em;
+    }
+
+    .social-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .social-link {
+      min-width: 0;
+      position: relative;
+      padding: 15px 58px 15px 16px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: var(--transition);
+      box-shadow: var(--glow-soft);
+      cursor: pointer;
+    }
+
+    .social-link::before,
+    .creative-link::before {
+      content: "↗";
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #74d9d2;
+      font-size: 1rem;
+      font-weight: 700;
+      box-shadow: 0 10px 22px rgba(7,10,20,0.16);
+      transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+      z-index: 2;
+    }
+
+    .social-link strong {
+      display: block;
+      font-size: 0.97rem;
+      margin-bottom: 4px;
+    }
+
+    .social-link small {
+      color: var(--soft);
+    }
+
+    .social-link:hover {
+      transform: translateY(-4px);
+      background: linear-gradient(135deg, rgba(204,204,255,0.16), rgba(163,163,204,0.12));
+      border-color: rgba(255,255,255,0.14);
+    }
+
+    .social-link:hover::before,
+    .creative-link:hover::before {
+      transform: translate(2px, -2px) scale(1.04);
+      background: rgba(204,204,255,0.18);
+      border-color: rgba(255,255,255,0.18);
+    }
+
+    .cta-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+      width: 100%;
+    }
+
+
+    .page-shell {
+      position: relative;
+      z-index: 1;
+    }
+
+    .content-shell {
+      padding: calc(var(--nav-h) + 34px) 0 82px;
+    }
+
+    .hero-visual {
+      min-height: 680px;
+      padding: 34px;
+      position: relative;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .portrait-shell {
+      position: relative;
+      width: min(100%, 520px);
+      aspect-ratio: 1 / 1;
+      display: grid;
+      place-items: center;
+    }
+
+    .orbit {
+      position: absolute;
+      inset: 12%;
+      border-radius: 50%;
+      border: 1px solid rgba(204,204,255,0.16);
+      animation: driftOrbit 18s linear infinite;
+      opacity: 0.8;
+    }
+
+    .orbit.two {
+      inset: 6%;
+      border-style: dashed;
+      animation-duration: 22s;
+      animation-direction: reverse;
+      opacity: 0.55;
+    }
+
+    .orbit.three {
+      inset: 0%;
+      border-color: rgba(163,163,204,0.12);
+      animation-duration: 28s;
+      opacity: 0.35;
+    }
+
+    .floating-pill {
+      position: absolute;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(14,20,39,0.78);
+      border: 1px solid rgba(204,204,255,0.18);
+      box-shadow: 0 16px 34px rgba(7,10,20,0.25);
+      font-size: 0.83rem;
+      font-weight: 700;
+      color: var(--text);
+      backdrop-filter: blur(10px);
+    }
+
+    .pill-a { top: 6%; left: 4%; }
+    .pill-b { top: 18%; right: -1%; }
+    .pill-c { bottom: 17%; left: -1%; }
+    .pill-d { bottom: 6%; right: 6%; }
+
+    .portrait-frame {
+      position: relative;
+      width: min(78%, 390px);
+      aspect-ratio: 1 / 1;
+      padding: 16px;
+      border-radius: 38px;
+      background: linear-gradient(135deg, rgba(204,204,255,0.18), rgba(92,92,153,0.08));
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: 0 30px 60px rgba(7,10,20,0.34);
+      z-index: 2;
+    }
+
+    .portrait-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 28px;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(13,20,36,0.96), rgba(10,16,30,0.82));
+      display: grid;
+      place-items: center;
+    }
+
+    .portrait-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .portrait-placeholder {
+      position: absolute;
+      inset: 0;
+      display: none;
+      place-items: center;
+      text-align: center;
+      padding: 28px;
+      color: var(--soft);
+      line-height: 1.8;
+    }
+
+    .mouse-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 24px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--soft);
+      font-size: 0.92rem;
+      justify-self: center;
+    }
+
+    .mouse-dot {
+      position: relative;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #74d9d2, rgba(116,217,210,0.62));
+      box-shadow: 0 0 18px rgba(116,217,210,0.28);
+      animation: dotFloat 1.8s ease-in-out infinite;
+    }
+
+    .mouse-dot::before,
+    .mouse-dot::after {
+      content: "";
+      position: absolute;
+      inset: -7px;
+      border-radius: 50%;
+      border: 1px solid rgba(116,217,210,0.34);
+      animation: dotRipple 1.8s ease-out infinite;
+    }
+
+    .mouse-dot::after {
+      animation-delay: 0.6s;
+    }
+
+    .section {
+      position: relative;
+      padding: 58px 0 8px;
+      scroll-margin-top: calc(var(--nav-h) + 34px);
+    }
+
+    .section-heading {
+      max-width: 860px;
+      margin-bottom: 24px;
+    }
+
+    .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 15px;
+      border-radius: 999px;
+      background: rgba(204,204,255,0.08);
+      border: 1px solid rgba(204,204,255,0.14);
+      color: #d7d1ff;
+      font-size: 0.84rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .section-kicker span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(180deg, var(--accent-2), var(--accent));
+      box-shadow: 0 0 0 6px rgba(204,204,255,0.10);
+    }
+
+    .section h2 {
+      margin: 16px 0 10px;
+      font-size: clamp(2rem, 3.4vw, 3rem);
+      line-height: 1.06;
+      letter-spacing: -0.03em;
+    }
+
+    .section-heading p,
+    .card p,
+    .timeline-item p,
+    .education-item p,
+    .pub-item,
+    li {
+      color: var(--muted);
+      line-height: 1.85;
+    }
+
+    .card {
+      position: relative;
+      padding: 28px;
+      overflow: hidden;
+    }
+
+    .card h3,
+    .card h4,
+    .education-item h3,
+    .timeline-title {
+      margin: 0 0 10px;
+      color: var(--text);
+    }
+
+    .card h3,
+    .education-item h3 {
+      font-size: 1.18rem;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .summary-copy p:not(:last-child) {
+      margin-bottom: 15px;
+    }
+
+    .metrics-panel {
+      display: grid;
+      gap: 24px;
+    }
+
+    .location-block h3 {
+      margin: 0 0 10px;
+      font-size: 1.18rem;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .metric {
+      padding: 16px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 1.6rem;
+      margin-bottom: 6px;
+    }
+
+    .metric span {
+      color: var(--soft);
+      font-size: 0.94rem;
+      line-height: 1.55;
+    }
+
+    .feature-stack {
+      display: grid;
+      gap: 12px;
+    }
+
+    .feature-line {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 10px 0;
+    }
+
+    .feature-line i {
+      width: 10px;
+      height: 10px;
+      margin-top: 9px;
+      border-radius: 50%;
+      background: linear-gradient(180deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 0 7px rgba(204,204,255,0.08);
+      flex-shrink: 0;
+    }
+
+    .creative-grid,
+    .skills-grid,
+    .edu-grid {
+      display: grid;
+      gap: 24px;
+    }
+
+    .creative-links {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .creative-link {
+      display: grid;
+      gap: 8px;
+      min-width: 0;
+      position: relative;
+      padding: 18px 58px 18px 18px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--glow-soft);
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .creative-link span {
+      color: var(--soft);
+      font-size: 0.74rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .creative-link strong {
+      font-size: 1rem;
+      line-height: 1.45;
+    }
+
+    .creative-link small {
+      color: var(--muted);
+    }
+
+    .social-link strong,
+    .creative-link strong {
+      position: relative;
+      display: inline-block;
+    }
+
+    .social-link strong::after,
+    .creative-link strong::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 42px;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      opacity: 0.9;
+    }
+
+    body[data-theme="light"] .social-link::before,
+    body[data-theme="light"] .creative-link::before {
+      background: rgba(124,132,255,0.12);
+      border-color: rgba(92,92,153,0.10);
+    }
+
+    .creative-link:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255,255,255,0.14);
+      background: linear-gradient(135deg, rgba(204,204,255,0.16), rgba(92,92,153,0.14));
+    }
+
+    .immersive-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .video-thumb-card {
+      width: 100%;
+      padding: 16px;
+      text-align: left;
+      appearance: none;
+      border: 0;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    .video-thumb-media {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      border-radius: 22px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--glow-soft);
+    }
+
+    .video-thumb-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.45s ease;
+    }
+
+    .video-thumb-card:hover .video-thumb-media img {
+      transform: scale(1.04);
+    }
+
+    .video-thumb-overlay {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(180deg, rgba(8,13,26,0.08), rgba(8,13,26,0.42));
+    }
+
+    .video-thumb-overlay span {
+      width: 66px;
+      height: 66px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(12,18,33,0.72);
+      border: 1px solid rgba(255,255,255,0.14);
+      color: var(--text);
+      font-size: 1.45rem;
+      box-shadow: 0 18px 40px rgba(7,10,20,0.26);
+      transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+    }
+
+    .video-thumb-card:hover .video-thumb-overlay span {
+      transform: scale(1.06);
+      background: rgba(204,204,255,0.16);
+      border-color: rgba(255,255,255,0.18);
+    }
+
+    .video-meta {
+      display: grid;
+      gap: 6px;
+      margin-top: 14px;
+    }
+
+    .video-meta span {
+      color: var(--soft);
+      font-size: 0.74rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .video-meta strong {
+      font-size: 1rem;
+      line-height: 1.45;
+      color: var(--text);
+    }
+
+    .video-modal {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(5, 8, 18, 0.84);
+      backdrop-filter: blur(12px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      z-index: 1400;
+    }
+
+    .video-modal.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .video-modal-panel {
+      width: min(100%, 980px);
+      padding: 20px;
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(12,18,33,0.96), rgba(10,16,30,0.92));
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: var(--glow);
+    }
+
+    .video-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .video-modal-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .video-modal-headline {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .video-modal-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .video-modal-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--text);
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.28s ease, background 0.28s ease, border-color 0.28s ease;
+    }
+
+    .video-modal-link:hover {
+      transform: translateY(-1px);
+      background: rgba(204,204,255,0.14);
+      border-color: rgba(255,255,255,0.18);
+    }
+
+    .video-modal-link .arrow-accent {
+      color: #74d9d2;
+    }
+
+    .video-modal-note {
+      margin: 0;
+      color: var(--soft);
+      font-size: 0.84rem;
+      line-height: 1.6;
+    }
+
+    .video-modal-close {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      font-size: 1.15rem;
+      cursor: pointer;
+      transition: transform 0.28s ease, background 0.28s ease, border-color 0.28s ease;
+    }
+
+    .video-modal-close:hover {
+      transform: scale(1.05);
+      background: rgba(204,204,255,0.14);
+      border-color: rgba(255,255,255,0.18);
+    }
+
+    .video-modal-media {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      border-radius: 22px;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .video-modal-media iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    @media (max-width: 640px) {
+      .video-modal-header {
+        align-items: flex-start;
+      }
+
+      .video-modal-actions {
+        justify-content: flex-end;
+      }
+
+      .video-modal-link {
+        font-size: 0.84rem;
+      }
+    }
+
+    body[data-theme="light"] .video-thumb-media,
+    body[data-theme="light"] .video-modal-close {
+      border-color: rgba(92,92,153,0.10);
+    }
+
+    body[data-theme="light"] .video-modal-panel {
+      background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(244,247,255,0.92));
+      border-color: rgba(92,92,153,0.10);
+    }
+
+    body[data-theme="light"] .video-modal-close {
+      background: rgba(255,255,255,0.72);
+      color: #20275a;
+    }
+
+    body[data-theme="light"] .video-modal-title {
+      color: #20275a;
+    }
+
+    .skills-wrap {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .skill-card,
+    .education-item,
+    .pub-item {
+      padding: 18px 20px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+
+    .skill-card h4 {
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .chip {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      padding: 11px 16px 11px 30px;
+      min-height: 42px;
+      border-radius: 16px 6px 16px 6px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.07), rgba(92,92,153,0.11));
+      border: 1px solid rgba(255,255,255,0.09);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 10px 24px rgba(7,10,20,0.10);
+      color: var(--text);
+      font-size: 0.88rem;
+      font-weight: 600;
+      line-height: 1.25;
+      clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+    }
+
+    .chip::before {
+      content: "";
+      position: absolute;
+      left: 13px;
+      top: 50%;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      transform: translateY(-50%);
+      box-shadow: 0 0 0 6px rgba(204,204,255,0.10);
+    }
+
+    .chip::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(204,204,255,0.10), transparent 45%);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    body[data-theme="light"] .chip {
+      background: linear-gradient(135deg, rgba(255,255,255,0.90), rgba(226,233,255,0.82));
+      border-color: rgba(92,92,153,0.10);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.95), 0 10px 24px rgba(91, 105, 180, 0.08);
+    }
+
+    body[data-theme="light"] .chip::before {
+      box-shadow: 0 0 0 6px rgba(124,132,255,0.10);
+    }
+
+    .experience-timeline {
+      position: relative;
+      display: grid;
+      gap: 18px;
+      --progress-y: 28px;
+    }
+
+    .experience-timeline::before {
+      content: "";
+      position: absolute;
+      top: 10px;
+      bottom: 10px;
+      left: 20px;
+      width: 2px;
+      background: linear-gradient(180deg, rgba(204,204,255,0.60), rgba(163,163,204,0.16));
+    }
+
+    .timeline-progress-circle {
+      position: absolute;
+      top: 0;
+      left: 10px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.95), rgba(116,217,210,0.92) 38%, rgba(66,181,174,0.96) 78%);
+      box-shadow: 0 0 0 9px rgba(116,217,210,0.10), 0 14px 30px rgba(16,16,46,0.34);
+      transform: translateY(var(--progress-y));
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-left: 56px;
+      padding: 24px 24px 22px;
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(12,18,33,0.74), rgba(10,16,30,0.58));
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--glow-soft);
+      overflow: hidden;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      top: 28px;
+      left: -42px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: linear-gradient(180deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 0 8px rgba(204,204,255,0.08);
+    }
+
+    .timeline-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .timeline-title {
+      font-size: 1.08rem;
+      font-weight: 800;
+      line-height: 1.45;
+    }
+
+    .timeline-date {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(204,204,255,0.10);
+      border: 1px solid rgba(204,204,255,0.14);
+      color: var(--soft);
+      font-size: 0.82rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .sub-block {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .sub-block strong {
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+
+    .link-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .link-list a {
+      position: relative;
+      padding: 10px 42px 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--text);
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .link-list a::before {
+      content: "↗";
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      width: 22px;
+      height: 22px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #74d9d2;
+      font-size: 0.78rem;
+      font-weight: 700;
+      box-shadow: 0 6px 14px rgba(7,10,20,0.14);
+      transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+    }
+
+    body[data-theme="light"] .link-list a::before {
+      background: rgba(124,132,255,0.12);
+      border-color: rgba(92,92,153,0.10);
+    }
+
+    .link-list a:hover {
+      transform: translateY(-3px);
+      background: rgba(204,204,255,0.12);
+      border-color: rgba(255,255,255,0.12);
+    }
+
+    .link-list a:hover::before {
+      transform: translate(2px, -50%) scale(1.04);
+      background: rgba(204,204,255,0.18);
+      border-color: rgba(255,255,255,0.18);
+    }
+
+    .fb-video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .fb-video-card {
+      display: block;
+      color: var(--text);
+      text-decoration: none;
+      padding: 12px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 12px 30px rgba(4, 8, 20, 0.18);
+    }
+
+    .fb-video-card:hover {
+      transform: translateY(-4px);
+      background: rgba(204,204,255,0.08);
+      border-color: rgba(255,255,255,0.14);
+      box-shadow: 0 18px 36px rgba(4, 8, 20, 0.24);
+    }
+
+    .fb-video-thumb {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(15, 28, 58, 0.94), rgba(9, 15, 33, 0.96));
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+    }
+
+    .fb-video-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .fb-video-thumb.fb-video-thumb-fallback::before {
+      content: "Facebook video preview";
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      text-align: center;
+      color: rgba(255,255,255,0.82);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .fb-video-badge {
+      position: absolute;
+      left: 12px;
+      bottom: 12px;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(8, 13, 26, 0.72);
+      border: 1px solid rgba(255,255,255,0.14);
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 700;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+      backdrop-filter: blur(10px);
+    }
+
+    .fb-video-name {
+      margin-top: 12px;
+      font-size: 0.94rem;
+      font-weight: 700;
+      line-height: 1.45;
+      color: var(--text);
+    }
+
+    body[data-theme="light"] .fb-video-card {
+      background: rgba(255,255,255,0.74);
+      border-color: rgba(92,92,153,0.10);
+      box-shadow: 0 14px 26px rgba(90, 98, 142, 0.12);
+    }
+
+    body[data-theme="light"] .fb-video-card:hover {
+      background: rgba(124,132,255,0.08);
+      border-color: rgba(92,92,153,0.14);
+    }
+
+    body[data-theme="light"] .fb-video-thumb {
+      background: linear-gradient(135deg, rgba(124,132,255,0.24), rgba(241,244,255,0.96));
+    }
+
+    body[data-theme="light"] .fb-video-badge {
+      background: rgba(255,255,255,0.86);
+      border-color: rgba(92,92,153,0.12);
+      color: #111827;
+    }
+
+    .split-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 1.1rem;
+    }
+
+    .pub-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .education-item + .education-item {
+      margin-top: 14px;
+    }
+
+    .footer {
+      padding-bottom: 60px;
+    }
+
+    .footer-card {
+      padding: 32px;
+      text-align: center;
+    }
+
+    .footer-card strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 1.32rem;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(34px) scale(0.985);
+      transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    @keyframes auraShift {
+      0% { transform: translate3d(-2%, -1%, 0) scale(1); }
+      100% { transform: translate3d(2%, 1%, 0) scale(1.04); }
+    }
+
+    @keyframes floatOrb {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-18px); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.12); opacity: 0.84; }
+    }
+
+    @keyframes sweep {
+      from { transform: translateX(-120%); }
+      to { transform: translateX(120%); }
+    }
+
+    @keyframes driftOrbit {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .primary-btn,
+    .secondary-btn {
+      appearance: none;
+      border: 0;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .primary-btn {
+      padding: 16px 22px;
+      border-radius: 999px;
+      color: white;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 16px 40px rgba(163,163,204,0.22);
+      transition: transform 0.28s ease, box-shadow 0.28s ease, filter 0.28s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .primary-btn::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 10%, rgba(255,255,255,0.26), transparent 65%);
+      transform: translateX(-120%);
+    }
+
+    .primary-btn:hover {
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: 0 20px 44px rgba(163,163,204,0.28);
+      filter: saturate(1.08);
+    }
+
+    .primary-btn:hover::after {
+      animation: shine 1.2s ease;
+    }
+
+
+    @keyframes shine {
+      0% { transform: translateX(-120%); }
+      100% { transform: translateX(120%); }
+    }
+
+    @keyframes bounceDot {
+      0%,100% { transform: translateY(0); opacity: 0.8; }
+      50% { transform: translateY(4px); opacity: 1; }
+    }
+
+
+    .landing-panel,
+    .hero-visual,
+    .card,
+    .timeline-item,
+    .education-item,
+    .pub-item,
+    .social-link,
+    .creative-link,
+    .skill-card,
+    .metric,
+    .footer-card {
+      position: relative;
+      overflow: hidden;
+      transform-style: preserve-3d;
+      transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease, background 0.35s ease;
+    }
+
+    .landing-panel::after,
+    .hero-visual::after,
+    .card::after,
+    .timeline-item::after,
+    .education-item::after,
+    .pub-item::after,
+    .social-link::after,
+    .creative-link::after,
+    .skill-card::after,
+    .metric::after,
+    .footer-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(380px circle at var(--mx, 50%) var(--my, 50%), rgba(204,204,255,0.18), transparent 38%);
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+
+    .landing-panel:hover::after,
+    .hero-visual:hover::after,
+    .card:hover::after,
+    .timeline-item:hover::after,
+    .education-item:hover::after,
+    .pub-item:hover::after,
+    .social-link:hover::after,
+    .creative-link:hover::after,
+    .skill-card:hover::after,
+    .metric:hover::after,
+    .footer-card:hover::after {
+      opacity: 1;
+    }
+
+    .hero-visual {
+      perspective: 1200px;
+    }
+
+    .portrait-frame {
+      transition: transform 0.45s ease, box-shadow 0.45s ease;
+      transform-style: preserve-3d;
+    }
+
+    .hero-visual:hover .portrait-frame {
+      box-shadow: 0 36px 80px rgba(7,10,20,0.42);
+    }
+
+    .floating-pill {
+      animation: pillFloat 7s ease-in-out infinite;
+    }
+
+    .pill-b { animation-delay: -1.5s; }
+    .pill-c { animation-delay: -3s; }
+    .pill-d { animation-delay: -4.5s; }
+
+    .metric:hover,
+    .skill-card:hover,
+    .pub-item:hover,
+    .education-item:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255,255,255,0.14);
+    }
+
+    .timeline-item:hover,
+    .card:hover,
+    .footer-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 24px 60px rgba(7,10,20,0.26);
+      border-color: rgba(255,255,255,0.13);
+    }
+
+    .theme-toggle-label {
+      white-space: nowrap;
+    }
+
+    .education-stack {
+      display: grid;
+      gap: 14px;
+    }
+
+    .education-stack .education-item p {
+      margin: 0;
+    }
+
+    body[data-theme="light"] {
+      --bg: #edf2ff;
+      --bg-2: #dde6ff;
+      --surface: rgba(255,255,255,0.82);
+      --surface-2: rgba(131, 146, 255, 0.16);
+      --card: rgba(255,255,255,0.78);
+      --card-strong: rgba(255,255,255,0.95);
+      --text: #1f2552;
+      --muted: #47507f;
+      --soft: #6b729a;
+      --accent: #7c84ff;
+      --accent-2: #95a0ff;
+      --accent-3: #bcc4ff;
+      --line: rgba(92,92,153,0.12);
+      --glow: 0 24px 60px rgba(92, 105, 180, 0.18);
+      --glow-soft: 0 12px 34px rgba(92, 105, 180, 0.12);
+      background:
+        radial-gradient(circle at 12% 18%, rgba(149,160,255,0.18), transparent 24%),
+        radial-gradient(circle at 86% 16%, rgba(124,132,255,0.14), transparent 22%),
+        radial-gradient(circle at 30% 82%, rgba(188,196,255,0.18), transparent 20%),
+        linear-gradient(180deg, #f5f7ff 0%, #edf2ff 36%, #e6ecff 70%, #dde6ff 100%);
+    }
+
+    body[data-theme="light"]::before {
+      background:
+        radial-gradient(circle at 50% 0%, rgba(124,132,255,0.10), transparent 28%),
+        linear-gradient(135deg, transparent 0%, rgba(149,160,255,0.10) 35%, rgba(188,196,255,0.10) 65%, transparent 100%);
+    }
+
+    body[data-theme="light"]::after {
+      background:
+        radial-gradient(520px circle at var(--cursor-x) var(--cursor-y), rgba(124,132,255,0.14), transparent 42%),
+        radial-gradient(300px circle at calc(var(--cursor-x) + 6%) calc(var(--cursor-y) - 10%), rgba(255,255,255,0.18), transparent 36%);
+    }
+
+    body[data-theme="light"] .topbar-inner {
+      background: rgba(255,255,255,0.75);
+      border-color: rgba(92,92,153,0.12);
+      box-shadow: 0 18px 44px rgba(91, 105, 180, 0.14);
+    }
+
+    body[data-theme="light"] .landing-panel,
+    body[data-theme="light"] .hero-visual,
+    body[data-theme="light"] .card,
+    body[data-theme="light"] .footer-card,
+    body[data-theme="light"] .timeline-item {
+      background: linear-gradient(180deg, rgba(255,255,255,0.82), rgba(244,247,255,0.74));
+      border-color: rgba(92,92,153,0.10);
+    }
+
+    body[data-theme="light"] .metric,
+    body[data-theme="light"] .skill-card,
+    body[data-theme="light"] .education-item,
+    body[data-theme="light"] .pub-item,
+    body[data-theme="light"] .social-link,
+    body[data-theme="light"] .creative-link,
+    body[data-theme="light"] .theme-toggle,
+    body[data-theme="light"] .mouse-hint,
+    body[data-theme="light"] .quote-block {
+      background: rgba(255,255,255,0.65);
+      border-color: rgba(92,92,153,0.10);
+      box-shadow: 0 8px 24px rgba(91, 105, 180, 0.08);
+    }
+
+    body[data-theme="light"] .nav-links a:hover,
+    body[data-theme="light"] .nav-links a.active {
+      color: #20275a;
+      background:
+        radial-gradient(circle at 50% -20%, rgba(116,217,210,0.18), transparent 62%),
+        rgba(116,217,210,0.14);
+      border-color: rgba(116,217,210,0.22);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.46), inset 0 0 0 1px rgba(116,217,210,0.10), 0 10px 20px rgba(91,105,180,0.08), 0 0 18px rgba(116,217,210,0.10);
+    }
+
+    body[data-theme="light"] .portrait-inner {
+      background: linear-gradient(180deg, rgba(236,240,255,0.96), rgba(226,233,255,0.88));
+    }
+
+    body[data-theme="light"] .portrait-placeholder,
+    body[data-theme="light"] .brand-mark {
+      color: #20275a;
+    }
+
+    body[data-theme="light"] .brand-mark {
+      background: linear-gradient(135deg, rgba(124,132,255,0.88), rgba(149,160,255,0.82));
+    }
+
+    @keyframes driftParticle {
+      0% {
+        transform: translate3d(0, 0, 0) scale(0.8);
+      }
+      50% {
+        transform: translate3d(30px, -60px, 0) scale(1);
+      }
+      100% {
+        transform: translate3d(-20px, -120px, 0) scale(0.7);
+      }
+    }
+
+    @keyframes dotFloat {
+      0%, 100% {
+        transform: translateY(0) scale(1);
+      }
+      50% {
+        transform: translateY(-4px) scale(1.08);
+      }
+    }
+
+    @keyframes dotRipple {
+      0% {
+        transform: scale(0.75);
+        opacity: 0.65;
+      }
+      70% {
+        transform: scale(1.55);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1.7);
+        opacity: 0;
+      }
+    }
+
+    @keyframes pillFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+
+    @media (max-width: 1120px) {
+      .landing-layout,
+      .summary-grid,
+      .split-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .creative-links,
+      .immersive-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .skills-wrap {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero-visual {
+        min-height: 520px;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .topbar {
+        top: 10px;
+      }
+
+      .topbar-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .topbar-actions {
+        width: 100%;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+
+      .landing {
+        padding-top: 88px;
+      }
+
+      .hero-visual {
+        min-height: 460px;
+      }
+
+      .creative-links,
+      .metrics,
+      .immersive-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(calc(100% - 20px), var(--max));
+      }
+
+      .landing-panel,
+      .card,
+      .timeline-item,
+      .footer-card,
+      .hero-visual {
+        padding: 22px;
+      }
+
+      .skills-wrap,
+      .creative-links,
+      .split-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-item {
+        margin-left: 30px;
+      }
+
+      .experience-timeline::before {
+        left: 14px;
+      }
+
+      .timeline-item::before {
+        left: -23px;
+      }
+
+      .social-row {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-row {
+        align-items: stretch;
+      }
+
+      .pill-a,
+      .pill-b,
+      .pill-c,
+      .pill-d {
+        display: none;
+      }
+    }
+
+
+
+    @media (max-width: 860px) {
+      html {
+        scroll-padding-top: 142px;
+      }
+
+
+      .topbar-inner {
+        padding: 14px;
+      }
+
+      .topbar-actions {
+        width: 100%;
+      }
+
+      .nav-links {
+        width: 100%;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding-bottom: 2px;
+      }
+
+      .nav-links::-webkit-scrollbar {
+        display: none;
+      }
+
+      .nav-links a {
+        flex: 0 0 auto;
+        white-space: nowrap;
+      }
+
+      .landing {
+        min-height: auto;
+        padding-top: 132px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      html {
+        scroll-padding-top: 132px;
+      }
+
+
+      .topbar {
+        width: min(calc(100% - 16px), 1180px);
+      }
+
+      .topbar-inner {
+        min-height: auto;
+        padding: 12px;
+        gap: 12px;
+        border-radius: 20px;
+      }
+
+      .brand {
+        width: 100%;
+      }
+
+      .brand-mark {
+        width: 40px;
+        height: 40px;
+        border-radius: 14px;
+      }
+
+      .brand-copy strong {
+        font-size: 0.9rem;
+      }
+
+      .brand-copy span {
+        font-size: 0.74rem;
+      }
+
+      .nav-links {
+        gap: 6px;
+      }
+
+      .nav-links a {
+        padding: 9px 12px;
+        font-size: 0.84rem;
+      }
+
+      .landing {
+        padding-top: 124px;
+        padding-bottom: 24px;
+      }
+
+      .landing-layout {
+        gap: 18px;
+      }
+
+      .hero-visual {
+        min-height: auto;
+      }
+
+      .portrait-shell {
+        width: min(100%, 360px);
+      }
+
+      .portrait-frame {
+        width: min(84%, 320px);
+        border-radius: 30px;
+      }
+
+      .portrait-inner {
+        border-radius: 22px;
+      }
+
+      .mouse-hint {
+        margin-top: 18px;
+        font-size: 0.84rem;
+        text-align: center;
+      }
+
+      .section {
+        padding-top: 46px;
+      }
+
+      .video-modal {
+        padding: 14px;
+      }
+
+      .video-modal-panel {
+        padding: 14px;
+        border-radius: 22px;
+      }
+
+      .video-modal-header {
+        gap: 12px;
+      }
+
+      .video-modal-actions {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .link-list a {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      html {
+        scroll-padding-top: 124px;
+      }
+
+
+      .container {
+        width: min(calc(100% - 16px), var(--max));
+      }
+
+      .landing-panel,
+      .card,
+      .timeline-item,
+      .footer-card,
+      .hero-visual {
+        padding: 18px;
+        border-radius: 24px;
+      }
+
+      .topbar {
+        top: 8px;
+      }
+
+      .topbar-inner {
+        border-radius: 18px;
+      }
+
+      .intro-badge,
+      .section-kicker,
+      .mouse-hint,
+      .timeline-date,
+      .video-modal-link {
+        font-size: 0.8rem;
+      }
+
+      .quote-block {
+        padding: 16px 18px;
+      }
+
+      .social-link,
+      .creative-link {
+        padding-left: 14px;
+        padding-right: 52px;
+      }
+
+      .social-link::before,
+      .creative-link::before {
+        top: 12px;
+        right: 12px;
+        width: 28px;
+        height: 28px;
+      }
+
+      .metric {
+        padding: 14px;
+      }
+
+      .metric strong {
+        font-size: 1.4rem;
+      }
+
+      .timeline-item {
+        margin-left: 26px;
+        padding: 18px 18px 16px;
+      }
+
+      .experience-timeline::before {
+        left: 12px;
+      }
+
+      .timeline-progress-circle {
+        left: 3px;
+        width: 18px;
+        height: 18px;
+      }
+
+      .timeline-item::before {
+        left: -19px;
+        width: 12px;
+        height: 12px;
+      }
+
+      .link-list a {
+        padding: 10px 40px 10px 12px;
+      }
+
+      .video-modal-title {
+        font-size: 0.96rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="ambient" aria-hidden="true">
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+    <div class="orb three"></div>
+    <div class="orb four"></div>
+  </div>
+  <div class="particles" aria-hidden="true" id="particles"></div>
+  <div class="grid-overlay" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <header class="topbar" id="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-mark">TG</div>
+        <div class="brand-copy">
+          <strong>Tahani A. Ghobon</strong>
+          <span>Immersive learning portfolio</span>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <nav class="nav-links" aria-label="Portfolio sections">
+          <a href="#summary">Summary</a>
+          <a href="#creative">Creative Work</a>
+          <a href="#skills">Skills</a>
+          <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
+          <a href="#publications">Publications</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <div class="page-shell">
+    <main>
+      <section class="landing">
+        <div class="container">
+          <div class="landing-layout">
+            <div class="landing-panel reveal visible">
+              <div class="intro-badge">
+                <span></span>
+                Portfolio Experience
+              </div>
+              <h1>Tahani A. Ghobon</h1>
+              <div class="position-line">
+                Instructional Design | Education | Web VR &amp; 3D Content | Immersive Environment Design 
+              </div>
+
+              <div class="quote-block">
+                <p>
+                  Let’s bring ideas to life - visually, creatively, and with purpose.                </p>
+                <small>Creative learning meets cinematic thinking.</small>
+              </div>
+
+              <div class="social-row">
+                <a class="social-link" href="https://jo.linkedin.com/in/tahani-ghobon" target="_blank" rel="noopener">
+                  <strong>LinkedIn</strong>
+                  <small>Professional profile</small>
+                </a>
+                <a class="social-link" href="https://www.youtube.com/channel/UCB-YgvblZJrTfn4liy8is6w" target="_blank" rel="noopener">
+                  <strong>YouTube</strong>
+                  <small>Videos & creative samples</small>
+                </a>
+                <a class="social-link" href="https://www.instagram.com/tahani_ghobon/" target="_blank" rel="noopener">
+                  <strong>Instagram</strong>
+                  <small>Visual and creative updates</small>
+                </a>
+              </div>
+
+              <div class="cta-row">
+                <button class="primary-btn" id="enterPortfolio" type="button">View Full Portfolio</button>
+              </div>
+            </div>
+
+            <div class="hero-visual reveal visible">
+              <div class="portrait-shell">
+                <div class="orbit"></div>
+                <div class="orbit two"></div>
+                <div class="orbit three"></div>
+                <div class="floating-pill pill-a">Instructional Design & Education</div>
+                <div class="floating-pill pill-d">Web VR and 3D</div>
+
+                <div class="portrait-frame">
+                  <div class="portrait-inner">
+                    <img src="image.png" alt="Portrait of Tahani A. Ghobon" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+                    <div class="portrait-placeholder">
+                      Add your image as <strong>image.png</strong><br />
+                      to display your portrait here.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mouse-hint">
+                <span class="mouse-dot"></span>
+                Scroll or enter the portfolio
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="content-shell">
+        <div class="container">
+          <section class="section reveal" id="summary">
+            <div class="section-heading">
+              <div class="section-kicker"><span></span>Summary</div>
+              <h2>Professional Summary</h2>
+            </div>
+
+            <div class="summary-grid">
+              
+              <div class="card summary-copy reveal">
+                <p>
+                  I am Tahani, an engineer, educator, and instructional designer with over 7 years of experience in education, training, research, and learning experience design. I am skilled in creating Web VR, 3D scenes, 360° interactive environments, and immersive experiences including vibe coding, modelling, sculpting, texturing, lighting, animation, and video editing.
+                </p>
+                <p>
+                  I am also proficient in storytelling, scriptwriting, storyboarding, content creation, and video production planning and management. My work combines strong educational foundations with creative and cinematic approaches to make learning more engaging, interactive, and memorable.
+                </p>
+                <p>
+                  I have experience leveraging AI-powered creative tools to generate and enhance multimedia assets, including images, audio, 3D objects, HDRI environments, and other digital media, supporting efficient and innovative content production.
+                </p>
+                <p>
+                  I completed “The Art of Storytelling” course by Pixar Animation Studios, which strengthened my skills in narrative structure, visual storytelling, and cinematic techniques for engaging educational and creative content.
+                </p>
+                <p>
+                  Furthermore, I create content about 3D and CGI animated movies for entertainment and educational purposes.
+                </p>
+              </div>
+
+              <div class="metrics-panel reveal">
+                <div class="card">
+                  <div class="location-block">
+                    <h3>Tahani</h3>
+                    <p>
+                      Passionate about integrating education, technology, film theory, and cinematic storytelling to develop engaging and impactful entertainment &amp; learning experiences.
+                    </p>
+                  </div>
+
+                  <div class="metrics" style="margin-top:18px;">
+                    <div class="metric">
+                      <strong class="count-up" data-target="7" data-suffix="+">0+</strong>
+                      <span>Years of experience</span>
+                    </div>
+                    <div class="metric">
+                      <strong class="count-up" data-target="20" data-suffix="+">0</strong>
+                      <span>Courses & Labs taught</span>
+                    </div>
+                    <div class="metric">
+                      <strong class="count-up" data-target="100" data-suffix="+">0</strong>
+                      <span>Designs & Projects</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <h3 style="margin-bottom:14px;">Education</h3>
+                  <div class="education-stack">
+                    <div class="education-item">
+                      <h3>MicroMaster Degree in Statistics and Data Science</h3>
+                      <p>Massachusetts Institute of Technology (MIT) – 2024</p>
+                    </div>
+                    <div class="education-item">
+                      <h3>BSc in Electrical Engineering / Power</h3>
+                      <p>Jordan University of Science and Technology – 2018</p>
+                      <p>GPA: Excellent</p>
+                    </div>
+                    <div class="education-item">
+                      <h3>Secondary Education / Scientific Stream</h3>
+                      <p>Jerash Secondary School for Girls – 2013</p>
+                      <p>GPA: 94.1</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section" id="creative">
+            <div class="section-heading reveal">
+              <div class="section-kicker"><span></span>Creative Work</div>
+              <h2>Sample of My Work</h2>
+            </div>
+
+            <div class="creative-grid">
+              <div class="card reveal">
+                <h3>3D, VR, and Simulations</h3>
+
+                <div class="creative-links">
+                  <a class="creative-link" href="https://tahanighobonarts.my.canva.site/" target="_blank" rel="noopener">
+                    <span>3D Portfolio</span>
+                    <strong>3D Portfolio</strong>
+                    <small>See projects</small>
+                  </a>
+                  <a class="creative-link" href="https://www.youtube.com/watch?v=QX6AD-tporM" target="_blank" rel="noopener">
+                    <span>VR Experience Sample</span>
+                    <strong>VR Experience Sample</strong>
+                    <small>Watch experience</small>
+                  </a>
+                  <a class="creative-link" href="https://tahanighobon.github.io/Interactive_Examples/" target="_blank" rel="noopener">
+                    <span>Interactive Experiments</span>
+                    <strong>Interactive Experiments Sample</strong>
+                    <small>Explore experiments</small>
+                  </a>              
+                </div>
+              </div>
+            </div>
+            
+          </section>
+
+
+          <section class="section" id="immersive-work">
+            <div class="section-heading reveal">
+
+            </div>
+
+            <div class="immersive-grid">
+              <button class="card video-thumb-card reveal" type="button" data-youtube-id="L9dRoPzUqKU" data-video-title="Immersive Video 01">
+                <div class="video-thumb-media">
+                  <img src="https://img.youtube.com/vi/L9dRoPzUqKU/hqdefault.jpg" alt="Thumbnail for Immersive Video 01" loading="lazy" />
+                  <div class="video-thumb-overlay" aria-hidden="true"><span>▶</span></div>
+                </div>
+                <div class="video-meta">
+                  <span>Sample</span>
+                  <strong>Video 01</strong>
+                </div>
+              </button>
+
+              <button class="card video-thumb-card reveal" type="button" data-youtube-id="gBQyibEhdYg" data-video-title="Immersive Video 02">
+                <div class="video-thumb-media">
+                  <img src="https://img.youtube.com/vi/gBQyibEhdYg/hqdefault.jpg" alt="Thumbnail for Immersive Video 02" loading="lazy" />
+                  <div class="video-thumb-overlay" aria-hidden="true"><span>▶</span></div>
+                </div>
+                <div class="video-meta">
+                  <span>Sample</span>
+                  <strong>Video 02</strong>
+                </div>
+              </button>
+
+              <button class="card video-thumb-card reveal" type="button" data-youtube-id="Oid2s_eWqxQ" data-video-title="Immersive Video 03">
+                <div class="video-thumb-media">
+                  <img src="https://img.youtube.com/vi/Oid2s_eWqxQ/hqdefault.jpg" alt="Thumbnail for Immersive Video 03" loading="lazy" />
+                  <div class="video-thumb-overlay" aria-hidden="true"><span>▶</span></div>
+                </div>
+                <div class="video-meta">
+                  <span>Sample</span>
+                  <strong>Video 03</strong>
+                </div>
+              </button>
+
+              <button class="card video-thumb-card reveal" type="button" data-youtube-id="4mfYG3XO5QY" data-video-title="Immersive Video 04">
+                <div class="video-thumb-media">
+                  <img src="https://img.youtube.com/vi/4mfYG3XO5QY/hqdefault.jpg" alt="Thumbnail for Immersive Video 04" loading="lazy" />
+                  <div class="video-thumb-overlay" aria-hidden="true"><span>▶</span></div>
+                </div>
+                <div class="video-meta">
+                  <span>Sample</span>
+                  <strong>Video 04</strong>
+                </div>
+              </button>
+
+              <button class="card video-thumb-card reveal" type="button" data-youtube-id="eXYh412av5s" data-video-title="Immersive Video 05">
+                <div class="video-thumb-media">
+                  <img src="https://img.youtube.com/vi/eXYh412av5s/hqdefault.jpg" alt="Thumbnail for Immersive Video 05" loading="lazy" />
+                  <div class="video-thumb-overlay" aria-hidden="true"><span>▶</span></div>
+                </div>
+                <div class="video-meta">
+                  <span>Sample</span>
+                  <strong>Video 05</strong>
+                </div>
+              </button>
+
+              <button class="card video-thumb-card reveal" type="button" data-youtube-id="JA1GBT928T0" data-video-title="Immersive Video 06">
+                <div class="video-thumb-media">
+                  <img src="https://img.youtube.com/vi/JA1GBT928T0/hqdefault.jpg" alt="Thumbnail for Immersive Video 06" loading="lazy" />
+                  <div class="video-thumb-overlay" aria-hidden="true"><span>▶</span></div>
+                </div>
+                <div class="video-meta">
+                  <span>Sample</span>
+                  <strong>Video 06</strong>
+                </div>
+              </button>
+
+              <button class="card video-thumb-card reveal" type="button" data-youtube-id="QX6AD-tporM" data-video-title="Immersive Video 07">
+                <div class="video-thumb-media">
+                  <img src="https://img.youtube.com/vi/QX6AD-tporM/hqdefault.jpg" alt="Thumbnail for Immersive Video 07" loading="lazy" />
+                  <div class="video-thumb-overlay" aria-hidden="true"><span>▶</span></div>
+                </div>
+                <div class="video-meta">
+                  <span>Sample</span>
+                  <strong>Video 07</strong>
+                </div>
+              </button>
+
+              <button class="card video-thumb-card reveal" type="button" data-youtube-id="sm9M39Vgycg" data-video-title="Immersive Video 08">
+                <div class="video-thumb-media">
+                  <img src="https://img.youtube.com/vi/sm9M39Vgycg/hqdefault.jpg" alt="Thumbnail for Immersive Video 08" loading="lazy" />
+                  <div class="video-thumb-overlay" aria-hidden="true"><span>▶</span></div>
+                </div>
+                <div class="video-meta">
+                  <span>Sample</span>
+                  <strong>Video 08</strong>
+                </div>
+              </button>
+
+              <button class="card video-thumb-card reveal" type="button" data-youtube-id="AFVKJFmvtO0" data-video-title="Immersive Video 09">
+                <div class="video-thumb-media">
+                  <img src="https://img.youtube.com/vi/AFVKJFmvtO0/hqdefault.jpg" alt="Thumbnail for Immersive Video 09" loading="lazy" />
+                  <div class="video-thumb-overlay" aria-hidden="true"><span>▶</span></div>
+                </div>
+                <div class="video-meta">
+                  <span>Sample</span>
+                  <strong>Video 09</strong>
+                </div>
+              </button>
+            </div>
+          </section>
+
+          <section class="section" id="skills">
+            <div class="section-heading reveal">
+              <div class="section-kicker"><span></span>Skills</div>
+              <h2>Skills</h2>
+            </div>
+
+            <div class="skills-grid">
+              <div class="card reveal">
+                <div class="skills-wrap">
+                  <div class="skill-card">
+                    <h4>Immersive &amp; Creative Media</h4>
+                    <p>Web VR, 3D and 360° environments, animation, storytelling, scriptwriting, storyboarding, Blender, Canva</p>
+                  </div>
+                  <div class="skill-card">
+                    <h4>Instructional &amp; Educational</h4>
+                    <p>Instructional design, Immersive Learning Experience, Interactive Simulations, Teaching, Higher Education, Course Creation, STEAM Education, Moodle</p>
+                  </div>
+                  <div class="skill-card">
+                    <h4>Technical Tools</h4>
+                    <p>A-Frame, HTML/CSS, Vibe Coding, Audacity, OBS Studio, Autocue / Teleprompter</p>
+                  </div>
+                  <div class="skill-card">
+                    <h4>AI &amp; Data</h4>
+                    <p>Generative AI tools, Data Analysis, and Interactive Dashboards</p>
+                  </div>
+                </div>
+
+                <div class="chips" style="margin-top:22px;">
+                  <div class="chip">Web Virtual Reality</div>
+                  <div class="chip">Immersive Environments</div>
+                  <div class="chip">3D &amp; 360° Environments</div>
+                  <div class="chip">Content Creation</div>
+                  <div class="chip">Storytelling</div>
+                  <div class="chip">Scriptwriting</div>
+                  <div class="chip">Storyboarding</div>
+                  <div class="chip">Animation</div>
+                  <div class="chip">Vibe Coding</div>
+                  <div class="chip">Blender</div>
+                  <div class="chip">HTML/CSS</div>
+                  <div class="chip">A-Frame</div>
+                  <div class="chip">Canva</div>
+                  <div class="chip">Interactive Simulation</div>
+                  <div class="chip">Design</div>
+                  <div class="chip">AI Creative Tools</div>
+                  <div class="chip">Video Editing</div>
+                  <div class="chip">Research</div>
+                  <div class="chip">Digital Twins</div>
+                  <div class="chip">E-Learning</div>
+                  <div class="chip">EdTech</div>
+                  <div class="chip">Moodle</div>
+                  <div class="chip">Autocue / Teleprompter</div>
+                  <div class="chip">Teaching</div>
+                  <div class="chip">STEAM Education</div>
+                  <div class="chip">Higher Education</div>
+                  <div class="chip">Blended Learning</div>
+                  <div class="chip">Educational Facilitation</div>
+                  <div class="chip">Course Creation</div>
+                  <div class="chip">Data-Driven Dashboards</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section" id="experience">
+            <div class="section-heading reveal">
+              <div class="section-kicker"><span></span>Experience</div>
+              <h2>Professional Experience</h2>
+            </div>
+
+            <div class="experience-timeline">
+              <div class="timeline-progress-circle" aria-hidden="true"></div>
+              <div class="timeline-item reveal">
+                <div class="timeline-top">
+                  <div class="timeline-title">Instructional Designer | D.Learn Center @ HTU</div>
+                  <div class="timeline-date">Oct 2024 – Present</div>
+                </div>
+                <p>
+                  I collaborate with Subject Matter Experts across various disciplines, including computing, engineering, basic sciences, languages, and architecture, to design both theoretical and practical online and blended courses. My responsibilities include identifying course nature, defining learning outcomes, and guiding SMEs through all stages: planning, design, development, production, review, LMS implementation, and gathering student feedback post-delivery.
+                </p>
+                <p>
+                  Additionally, I write scripts, develop storyboards, and design interactive content to enhance learner engagement and improve the educational experience. I also supervise media production to ensure the delivery of high-quality educational materials.
+                </p>
+                <p>
+                  Furthermore, I create interactive dashboards for work analysis and educational purposes to support data-driven decision-making and continuous improvement. I also create VR experiences and interactive experiments.
+                </p>
+                <div class="sub-block">
+                  <strong>Selected work:</strong>
+                  <div class="link-list">
+                    <a href="https://htux.org/" target="_blank" rel="noopener">HTUx Platform</a>
+                    <a href="https://htu-courses-progress-dashboard.streamlit.app/" target="_blank" rel="noopener">Progress Dashboard Sample</a>
+                    <a href="https://www.youtube.com/watch?v=QX6AD-tporM" target="_blank" rel="noopener">VR Experience Sample</a>
+                    <a href="https://tahanighobon.github.io/Interactive_Examples/" target="_blank" rel="noopener">Interactive Experiments</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="timeline-item reveal">
+                <div class="timeline-top">
+                  <div class="timeline-title">Research and Teaching Assistant | Al-Hussein Technical University</div>
+                  <div class="timeline-date">Sep 2018 – Sep 2024</div>
+                </div>
+                <p>
+                  During my time at HTU as a research and teaching assistant, my role extended beyond teaching to include contributions in research, academic projects, content creation, and extracurricular activities.
+                </p>
+                <div class="sub-block">
+                  <strong>Teaching Responsibilities</strong>
+                  <p>
+                    I delivered both courses and laboratory sessions for Pearson and HTU units, taught 5 courses and 15 laboratories, and I was assigned as IV and LIV for several courses.
+                  </p>
+                  <p>
+                    <strong>Courses Taught:</strong> Electrical Machines | Engineering Mathematics | Further Mathematics | STEM I | STEM II
+                  </p>
+                  <p>
+                    <strong>Laboratories Taught:</strong> Introduction to AI and Data Science | Data Analytics, Industrial Power, Electronics, and Storage | Power Systems | Electrical Machines | Electrical and Electronics Principles | Further Mathematics | Engineering Mathematics | Digital Principles | VHDL/FPGA | Further Electrical, Electronic, and Digital | Electronic Circuits and Devices | Engineering Science | Mechatronics Systems
+                  </p>
+                </div>
+              </div>
+
+              <div class="timeline-item reveal">
+                <div class="timeline-top">
+                  <div class="timeline-title">HTU Film Club Founder and Supervisor</div>
+                  <div class="timeline-date">2023 – Present</div>
+                </div>
+                <p>
+                 I organized and coordinated several events, including cultural, scientific, and entertainment film screenings. I established collaborations with various organizations and stakeholders, building strategic partnerships that enriched the content, expanded audience engagement, and increased the overall impact of these events.                </p>
+              </div>
+
+              <div class="timeline-item reveal">
+                <div class="timeline-top">
+                  <div class="timeline-title">Head of SET Newsletter, Media and Website Committee</div>
+                  <div class="timeline-date">Oct 2022 – Oct 2024</div>
+                </div>
+                <p>
+                  I designed and directed a series of short educational videos in collaboration with engineers and professors. These videos covered several topics in electrical, mechanical, and energy engineering. Beyond education, the videos significantly contributed to promoting our college.
+                </p>
+                <div class="sub-block">
+                <strong>Sample Videos:</strong>
+                <div class="fb-video-grid">
+                  <a class="fb-video-card" href="https://www.facebook.com/HTUjo/videos/%25D8%25AD%25D8%25A7%25D8%25A8%25D8%25A8-%25D8%25AA%25D8%25B9%25D8%25B1%25D9%2581-%25D8%25A3%25D9%2583%25D8%25AB%25D8%25B1-%25D8%25B9%25D9%2586-%25D9%2587%25D9%2586%25D8%25AF%25D8%25B3%25D8%25A9-%25D8%25A7%25D9%2584%25D9%2585%25D9%258A%25D9%2583%25D8%25A7%25D8%25AA%25D8%25B1%25D9%2588%25D9%2586%25D9%2583%25D8%25B3-%25EF%25B8%258F%25D8%25A7%25D9%2584%25D8%25AF%25D9%2583%25D8%25AA%25D9%2588%25D8%25B1-%25D8%25B7%25D8%25A7%25D8%25B1%25D9%2582-%25D8%25AA%25D9%2588%25D8%25AA%25D9%2588%25D9%2586%25D8%25AC%25D9%258A-%25D8%25B9%25D9%2585%25D9%258A%25D8%25AF-%25D9%2583%25D9%2584%25D9%258A%25D9%2591%25D8%25A9-%25D8%25A7%25D9%2584%25D9%2587%25D9%2586%25D8%25AF%25D8%25B3%25D8%25A9-%25D8%25A7%25D9%2584/1111858526605820" target="_blank" rel="noopener">
+                    <div class="fb-video-thumb">
+                      <img src="F1.png" alt="Mechatronics Engineering Video thumbnail" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('fb-video-thumb-fallback');" />
+                    </div>
+                    <div class="fb-video-name">Mechatronics Engineering Video</div>
+                  </a>
+
+                  <a class="fb-video-card" href="https://www.facebook.com/HTUjo/videos/%25D9%2582%25D8%25AF%25D9%258A%25D8%25B4-%25D8%25A8%25D8%25AA%25D8%25B9%25D8%25B1%25D9%2581%25D9%2588%25D8%25A7-%25D8%25B9%25D9%2586-%25D9%2585%25D8%25AD%25D8%25B7%25D8%25A7%25D8%25AA-%25D8%25AA%25D9%2588%25D9%2584%25D9%258A%25D8%25AF-%25D8%25A7%25D9%2584%25D8%25B7%25D8%25A7%25D9%2582%25D8%25A9-%25D8%25A7%25D9%2584%25D9%2585%25D8%25AF%25D8%25B1%25D9%2591%25D8%25B3-%25D9%2586%25D8%25B2%25D8%25A7%25D8%25B1-%25D8%25A7%25D9%2584%25D9%2582%25D8%25B6%25D8%25A7%25D8%25A9-%25D9%2585%25D9%2586-%25D9%2583%25D9%2584%25D9%258A%25D9%2591%25D8%25A9-%25D8%25A7%25D9%2584%25D9%2587%25D9%2586%25D8%25AF%25D8%25B3%25D8%25A9-%25D8%25A7%25D9%2584%25D8%25AA%25D9%2583%25D9%2586%25D9%2588%25D9%2584%25D9%2588/421659297216402" target="_blank" rel="noopener">
+                    <div class="fb-video-thumb">
+                      <img src="F2.png" alt="Power Generation Stations Video thumbnail" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('fb-video-thumb-fallback');" />
+                    </div>
+                    <div class="fb-video-name">Power Generation Stations Video</div>
+                  </a>
+
+                  <a class="fb-video-card" href="https://www.facebook.com/HTUjo/videos/%25D9%2585%25D8%25B9%25D9%2582%25D9%2588%25D9%2584-%25D9%2587%25D9%2586%25D8%25AF%25D8%25B3%25D8%25A9-%25D8%25A7%25D9%2584%25D9%2585%25D9%258A%25D9%2583%25D8%25A7%25D9%2586%25D9%258A%25D9%2583-%25D8%25A8%25D8%25B3-%25D8%25B3%25D9%258A%25D8%25A7%25D8%25B1%25D8%25A7%25D8%25AA-%25D8%25A7%25D9%2584%25D8%25AF%25D9%2583%25D8%25AA%25D9%2588%25D8%25B1-%25D9%2581%25D8%25B1%25D8%25A7%25D8%25B3-%25D8%25AC%25D8%25B1%25D8%25A7%25D8%25B1-%25D8%25B1%25D8%25A6%25D9%258A%25D8%25B3-%25D9%2582%25D8%25B3%25D9%2585-%25D9%2587%25D9%2586%25D8%25AF%25D8%25B3%25D8%25A9-%25D8%25A7%25D9%2584%25D9%2585%25D9%258A%25D9%2583%25D8%25A7%25D9%2586%25D9%258A%25D9%2583-%25D9%2581%25D9%258A-%25D8%25AC%25D8%25A7/407084798746686" target="_blank" rel="noopener">
+                    <div class="fb-video-thumb">
+                      <img src="F3.png" alt="Mechanical Engineering Video thumbnail" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('fb-video-thumb-fallback');" />
+                    </div>
+                    <div class="fb-video-name">Mechanical Engineering Video</div>
+                  </a>
+
+                  <a class="fb-video-card" href="https://www.facebook.com/HTUjo/videos/%D8%B3%D9%85%D8%B9%D8%AA-%D8%B9%D9%86-%D8%A7%D9%84%D8%A2%D9%84%D8%A7%D8%AA-%D8%A7%D9%84%D9%83%D9%87%D8%B1%D8%A8%D8%A7%D8%A6%D9%8A%D9%91%D8%A9-%D8%A3%D9%88-%D8%A3%D9%86%D8%B8%D9%85%D8%A9-%D8%A7%D9%84%D9%82%D9%8A%D8%A7%D8%AF%D8%A9-%D8%A7%D9%84%D8%A3%D8%B3%D8%AA%D8%A7%D8%B0-%D8%A7%D9%84%D8%AF%D9%83%D8%AA%D9%88%D8%B1-%D9%84%D8%B7%D9%81%D9%8A-%D8%A7%D9%84%D8%B4%D8%B1%D9%8A%D9%81-%D9%86%D8%A7%D8%A6%D8%A8-%D8%B1%D8%A6%D9%8A/830688468888327/" target="_blank" rel="noopener">
+                    <div class="fb-video-thumb">
+                      <img src="F4.png" alt="Mechanical Engineering Video thumbnail" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('fb-video-thumb-fallback');" />
+                    </div>
+                    <div class="fb-video-name">Electrical Machines Video</div>
+                  </a>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="timeline-item reveal">
+                <div class="timeline-top">
+                  <div class="timeline-title">Educational Video Creator</div>
+                  <div class="timeline-date">2019 – Oct 2024</div>
+                </div>
+                <p>
+                  I created educational videos for students covering topics in electrical engineering such as Power Electronics using SIMULINK, Electrical Machines using SIMULINK, Logic Design using Multisim, Circuit Analysis using SIMULINK, Mathematics using MATLAB, and more.
+                </p>
+                <div class="sub-block">
+                  <strong>Educational video sample:</strong>
+                  <div class="link-list">
+                    <a href="https://youtube.com/playlist?list=PLpM4rUGJE_jOQVUYSL6VFpYZX0A1XEESM&si=ibcZmBOWVF3Ujh7w" target="_blank" rel="noopener">Educational Video Playlist</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="timeline-item reveal">
+                <div class="timeline-top">
+                  <div class="timeline-title">HTU Educational YouTube Channel Supervisor</div>
+                  <div class="timeline-date">2020 – 2021</div>
+                </div>
+                <p>
+                  My role included creating educational content and supervising the scientific content produced by my colleagues, as well as managing and publishing this content on the HTU Educational Channel.
+                </p>
+                <div class="sub-block">
+                  <strong>Channel:</strong>
+                  <div class="link-list">
+                    <a href="https://youtube.com/@htueducationalchannel84?si=I_RZsJfmhihWhpeh" target="_blank" rel="noopener">HTU Educational Channel</a>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="timeline-item reveal">
+                <div class="timeline-top">
+                  <div class="timeline-title">Trainee Designer Engineer | Jordan University of Science and Technology</div>
+                  <div class="timeline-date">Jan 2017 – Jun 2018</div>
+                </div>
+                <p>
+                  Worked as a volunteer trainee at the Center of Excellence for Innovation Projects. During my training period, I participated in several projects including wireless power charger and fixed-wing and drone controllers.
+                </p>
+              </div>
+
+              <div class="timeline-item reveal">
+                <div class="timeline-top">
+                  <div class="timeline-title">Trainer and Teacher | Genius Academy</div>
+                  <div class="timeline-date">Apr 2018 – Aug 2018</div>
+                </div>
+                <p>
+                  Taught Electrical Machines and Drives, Electronics, Power Electronics, and Numerical Analysis.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section class="section" id="projects">
+            <div class="section-heading reveal">
+              <div class="section-kicker"><span></span>Projects</div>
+              <h2>Professional Projects & Academic Contributions</h2>
+
+            </div>
+
+            <div class="split-grid">
+              <div class="card reveal">
+                <h3>Eco-Car Project, Co-founded by Erasmus+</h3>
+                <p><strong>2020 – 2024</strong></p>
+                <p>
+                  The main objective of the ECO-CAR Project was to develop a multidisciplinary diploma in the field of electrical and hybrid vehicles while fostering collaboration between companies and higher education institutions. My role in the project included preparing educational materials, documentation, and conducting workshops.
+                </p>
+                <p>
+                  I participated in the following two funded workshops:
+                </p>
+                <ul>
+                  <li>Workshop on Electrical and Hybrid Vehicles, 25–29 September 2023, National Technical University of Athens, Greece</li>
+                  <li>Workshop on Electrical and Hybrid Vehicles, 09–13 January 2023, University of Deusto, Spain</li>
+                </ul>
+                <div class="sub-block">
+                  <strong>Project page:</strong>
+                  <div class="link-list">
+                    <a href="https://sites.ju.edu.jo/en/eco-car/Lists/Partners/Disp_form.aspx?ID=13&Title=Al-Hussein%2520bin%2520Abdullah%2520II%2520Technical%2520University" target="_blank" rel="noopener">Eco-Car Project Page</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card reveal">
+                <h3>Data Science, AI, and Engineering Projects</h3>
+                <p>
+                  I have led and collaborated on many projects with students and colleagues across various fields. In Data Science and Machine Learning, we focused on analyzing movie data, predicting success using machine learning, forecasting revenue, and using NLP for film review classification.
+                </p>
+                <p>
+                  Our work also included real estate predictions, medical diagnosis, and exploring search algorithms and classic AI games. In Engineering and Education, I worked on practical projects such as wireless charger, electric formula car, home automation system, and robots.
+                </p>
+              </div>
+
+              <div class="card reveal">
+                <h3>Online and Blended Learning Contributions</h3>
+                <p>
+                In 2020 and 2021, I taught several online labs, including practical labs where experiments were converted into simulation experiments using programs like SIMULINK and Multisim to imitate reality. I also conducted labs focused on programming, using tools such as MATLAB.
+                </p>
+                <p>
+                Additionally, I worked with the Online Learning Center at Al-Hussein Technical University to create several online courses, including Building Services Pathway and Electrical Machines Course.
+              </p>
+              <div class="sub-block">
+                  <strong>Course page:</strong>
+                  <div class="link-list">
+                    <a href="https://htux.org/htu_course_author/eng-tahani/" target="_blank" rel="noopener">Online Course</a>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="card reveal">
+              <ul>
+                <h3>Judging and Academic Support Roles</h3>
+                <p> </p>
+                <li>Judge, Sumo Robotics Competition – 2023</li>
+                <li>ISEF Jordan Projects Supervisor – 2024</li>
+                <li>Referee, Sumo Robotics Competition – 2024</li>
+                <li>University Liaison Officer at HTU for the Crown Prince Award for Best Government Service Application – 2025–2026</li>
+              </ul>
+            </div>
+              
+            </div>
+          </section>
+
+          <section class="section" id="publications">
+            <div class="section-heading reveal">
+              <div class="section-kicker"><span></span>Publications</div>
+              <h2>Research Publications</h2>
+            </div>
+
+            <div class="card reveal">
+              <div class="pub-list">
+                <div class="pub-item">
+                  Tahani A. Ghobon, Tarek Tutunji, and Lutfi Al-Sharif, Identification of Low-Power Appliances using Machine Learning Algorithms: Review, Comparison, and Selection. Energy. Under Review.
+                </div>
+                <div class="pub-item">
+                  Al-Sharif, Lutfi, Richard Peters, Matthew Appleby, and Tahani Ghobon. Estimating the Traffic Mix in a Building by Analysing the Stops Data per Round Trip.
+                </div>
+                <div class="pub-item">
+                  Al Fahoum, Amjed, and Tahani A. Ghobon. Performance predictions of Sci-Fi films via machine learning. Applied Sciences 13.7 (2023): 4312.
+                </div>
+                <div class="pub-item">
+                  Al Fahoum, Amjed, and Tahani A. Ghobon. Accurate Machine Learning Predictions of Sci-Fi Film Performance. Journal of New Media 5.1 (2023).
+                </div>
+                <div class="pub-item">
+                  غبن تهاني، and الفاهوم أمجد. The Use of Artificial Intelligence and Robotics-Related Films as a Tool to Introduce Middle School Students to Artificial Intelligence and Robotics. المجلة الدولية للبحوث النفسية والتربوية 1.2 (2022).
+                </div>
+                <div class="pub-item">
+                  Al-Fahoum, A., and T. Ghobon. An Applied Approach For Speed Estimation of Induction Motors Using Sensorless Flux Observer System with Sliding Mode Field Oriented Control. Technology 11.6 (2020): 109–122.
+                </div>
+              </div>
+              <div class="sub-block" style="margin-top:16px;">
+                <strong>Research profile:</strong>
+                <div class="link-list">
+                  <a href="https://scholar.google.com/citations?user=EQRZEUkAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section footer reveal">
+            <div class="footer-card">
+              <strong>Tahani A. Ghobon</strong>
+              <div style="margin-bottom:10px;">Contact Me:</div>
+              <div class="link-list" style="justify-content:center;">
+                <a href="https://jo.linkedin.com/in/tahani-ghobon" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://www.instagram.com/tahani_ghobon/" target="_blank" rel="noopener">Instagram</a>
+                <a href="https://www.youtube.com/channel/UCB-YgvblZJrTfn4liy8is6w" target="_blank" rel="noopener">YouTube</a>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="video-modal" id="videoModal" role="dialog" aria-modal="true" aria-labelledby="videoModalTitle">
+    <div class="video-modal-panel">
+      <div class="video-modal-header">
+        <div class="video-modal-headline">
+          <div class="video-modal-title" id="videoModalTitle">Immersive Work</div>
+          <p class="video-modal-note" id="videoModalNote">If the page is opened as a local file, the video will open directly on YouTube for reliable playback.</p>
+        </div>
+        <div class="video-modal-actions">
+          <a class="video-modal-link" id="videoModalYoutubeLink" href="#" target="_blank" rel="noopener">Open on YouTube <span class="arrow-accent">↗</span></a>
+          <button class="video-modal-close" id="videoModalClose" type="button" aria-label="Close video viewer">✕</button>
+        </div>
+      </div>
+      <div class="video-modal-media">
+        <iframe
+          id="videoModalFrame"
+          src=""
+          title="Immersive work video player"
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const revealElements = document.querySelectorAll('.reveal');
+    revealElements.forEach((el, index) => {
+      el.style.transitionDelay = `${Math.min(index * 45, 300)}ms`;
+    });
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    revealElements.forEach((el) => {
+      if (!el.classList.contains('visible')) revealObserver.observe(el);
+    });
+
+    const progressBar = document.querySelector('.scroll-progress');
+    const topbar = document.getElementById('topbar');
+    const landing = document.querySelector('.landing');
+    const navLinks = Array.from(document.querySelectorAll('.nav-links a'));
+    const sections = navLinks
+      .map((link) => document.querySelector(link.getAttribute('href')))
+      .filter(Boolean);
+
+    const particlesContainer = document.getElementById('particles');
+    const root = document.body;
+    root.dataset.theme = 'dark';
+
+    const updateUIOnScroll = () => {
+      const scrollTop = window.scrollY;
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+      progressBar.style.width = `${progress}%`;
+
+      const landingHeight = landing.offsetHeight * 0.42;
+      topbar.classList.toggle('visible', scrollTop > landingHeight);
+    };
+
+    window.addEventListener('scroll', updateUIOnScroll, { passive: true });
+    updateUIOnScroll();
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          navLinks.forEach((link) => {
+            link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`);
+          });
+        }
+      });
+    }, {
+      rootMargin: '-35% 0px -45% 0px',
+      threshold: 0
+    });
+
+    sections.forEach((section) => sectionObserver.observe(section));
+
+    const enterButton = document.getElementById('enterPortfolio');
+    enterButton.addEventListener('click', () => {
+      document.getElementById('summary').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      topbar.classList.add('visible');
+    });
+
+    const orbs = document.querySelectorAll('.orb');
+    const interactiveGlowTargets = document.querySelectorAll('.landing-panel, .hero-visual, .card, .timeline-item, .education-item, .pub-item, .social-link, .creative-link, .skill-card, .metric, .footer-card');
+    const heroVisual = document.querySelector('.hero-visual');
+    const portraitFrame = document.querySelector('.portrait-frame');
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let orbRAF = null;
+
+    const animateOrbs = () => {
+      orbs.forEach((orb, index) => {
+        const speed = (index + 1) * 0.006;
+        const x = (mouseX - window.innerWidth / 2) * speed;
+        const y = (mouseY - window.innerHeight / 2) * speed;
+        orb.style.transform = `translate(${x}px, ${y}px)`;
+      });
+      orbRAF = null;
+    };
+
+    window.addEventListener('mousemove', (event) => {
+      mouseX = event.clientX;
+      mouseY = event.clientY;
+      document.body.style.setProperty('--cursor-x', `${event.clientX}px`);
+      document.body.style.setProperty('--cursor-y', `${event.clientY}px`);
+      if (!orbRAF) orbRAF = requestAnimationFrame(animateOrbs);
+    });
+
+    interactiveGlowTargets.forEach((item) => {
+      item.addEventListener('mousemove', (event) => {
+        const rect = item.getBoundingClientRect();
+        item.style.setProperty('--mx', `${event.clientX - rect.left}px`);
+        item.style.setProperty('--my', `${event.clientY - rect.top}px`);
+      });
+    });
+
+    if (heroVisual && portraitFrame) {
+      heroVisual.addEventListener('mousemove', (event) => {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || window.innerWidth <= 860) return;
+        const rect = heroVisual.getBoundingClientRect();
+        const rotateY = ((event.clientX - rect.left) / rect.width - 0.5) * 12;
+        const rotateX = ((event.clientY - rect.top) / rect.height - 0.5) * -10;
+        portraitFrame.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(12px)`;
+      });
+
+      heroVisual.addEventListener('mouseleave', () => {
+        portraitFrame.style.transform = '';
+      });
+    }
+
+    if (particlesContainer) {
+      const particleCount = 16;
+      const particleMarkup = Array.from({ length: particleCount }).map((_, index) => {
+        const left = Math.random() * 100;
+        const top = Math.random() * 100;
+        const delay = (Math.random() * 12).toFixed(2);
+        const duration = (12 + Math.random() * 12).toFixed(2);
+        const opacity = (0.18 + Math.random() * 0.45).toFixed(2);
+        const size = (3 + Math.random() * 4).toFixed(2);
+        return `<span class="particle" style="left:${left}%; top:${top}%; --delay:${delay}s; --duration:${duration}s; --opacity:${opacity}; width:${size}px; height:${size}px;"></span>`;
+      }).join('');
+      particlesContainer.innerHTML = particleMarkup;
+    }
+
+    const magneticTargets = document.querySelectorAll('.primary-btn, .social-link, .skill-card, .card, .timeline-item, .education-item, .pub-item, .footer-card, .landing-panel, .metrics-panel, .creative-link, .metric');
+    const counters = document.querySelectorAll('.count-up');
+    const animateCounter = (counter) => {
+      const target = Number(counter.dataset.target || 0);
+      const suffix = counter.dataset.suffix || '';
+      const duration = 1500;
+      const start = performance.now();
+
+      const tick = (now) => {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const value = Math.round(target * eased);
+        counter.textContent = `${value}${suffix}`;
+
+        if (progress < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          counter.textContent = `${target}${suffix}`;
+        }
+      };
+
+      requestAnimationFrame(tick);
+    };
+
+    if (counters.length) {
+      const counterObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          animateCounter(entry.target);
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.65 });
+
+      counters.forEach((counter) => counterObserver.observe(counter));
+    }
+
+    const experienceSection = document.querySelector('#experience');
+    const experienceTimeline = experienceSection ? experienceSection.querySelector('.experience-timeline') : null;
+    const timelineItems = experienceTimeline ? Array.from(experienceTimeline.querySelectorAll('.timeline-item')) : [];
+    const progressCircle = experienceTimeline ? experienceTimeline.querySelector('.timeline-progress-circle') : null;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!reducedMotion && window.innerWidth > 860) {
+      magneticTargets.forEach((item) => {
+        item.addEventListener('mousemove', (event) => {
+          const rect = item.getBoundingClientRect();
+          const moveX = ((event.clientX - rect.left) / rect.width - 0.5) * 16;
+          const moveY = ((event.clientY - rect.top) / rect.height - 0.5) * 14;
+          item.style.transform = `translate3d(${moveX}px, ${moveY}px, 0)`;
+        });
+
+        item.addEventListener('mouseleave', () => {
+          item.style.transform = '';
+        });
+      });
+    }
+
+    const updateTimelineCircle = () => {
+      if (!experienceSection || !experienceTimeline || timelineItems.length < 2 || !progressCircle) return;
+
+      const sectionRect = experienceSection.getBoundingClientRect();
+      const firstY = timelineItems[0].offsetTop + 28;
+      const lastY = timelineItems[timelineItems.length - 1].offsetTop + 28;
+      const viewportHeight = window.innerHeight;
+      const rawProgress = (viewportHeight * 0.72 - sectionRect.top) / (sectionRect.height - viewportHeight * 0.30);
+      const progress = Math.max(0, Math.min(1, rawProgress));
+      const y = firstY + (lastY - firstY) * progress - 11;
+      experienceTimeline.style.setProperty('--progress-y', `${y}px`);
+    };
+
+    updateTimelineCircle();
+    window.addEventListener('scroll', updateTimelineCircle, { passive: true });
+    window.addEventListener('resize', updateTimelineCircle);
+
+    const videoButtons = document.querySelectorAll('.video-thumb-card');
+    const videoModal = document.getElementById('videoModal');
+    const videoModalFrame = document.getElementById('videoModalFrame');
+    const videoModalTitle = document.getElementById('videoModalTitle');
+    const videoModalClose = document.getElementById('videoModalClose');
+    const videoModalYoutubeLink = document.getElementById('videoModalYoutubeLink');
+    const isLocalPreview = window.location.protocol === 'file:';
+    let activeVideoTrigger = null;
+
+    const getYoutubeWatchUrl = (youtubeId) => `https://www.youtube.com/watch?v=${youtubeId}`;
+
+    const getYoutubeEmbedUrl = (youtubeId) => {
+      const params = new URLSearchParams({
+        autoplay: '1',
+        rel: '0',
+        modestbranding: '1',
+        playsinline: '1'
+      });
+
+      if (window.location.origin && window.location.origin !== 'null') {
+        params.set('origin', window.location.origin);
+      }
+
+      return `https://www.youtube.com/embed/${youtubeId}?${params.toString()}`;
+    };
+
+    const closeVideoModal = () => {
+      if (!videoModal || !videoModalFrame) return;
+      videoModal.classList.remove('open');
+      document.body.classList.remove('modal-open');
+      videoModalFrame.src = '';
+      if (activeVideoTrigger) activeVideoTrigger.focus();
+    };
+
+    if (videoButtons.length && videoModal && videoModalFrame && videoModalTitle && videoModalClose && videoModalYoutubeLink) {
+      videoButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const youtubeId = button.dataset.youtubeId;
+          const videoTitle = button.dataset.videoTitle || 'Immersive Work';
+          if (!youtubeId) return;
+
+          const watchUrl = getYoutubeWatchUrl(youtubeId);
+          activeVideoTrigger = button;
+          videoModalTitle.textContent = videoTitle;
+          videoModalYoutubeLink.href = watchUrl;
+
+          if (isLocalPreview) {
+            window.open(watchUrl, '_blank', 'noopener');
+            return;
+          }
+
+          videoModal.classList.add('open');
+          document.body.classList.add('modal-open');
+          videoModalFrame.src = getYoutubeEmbedUrl(youtubeId);
+        });
+      });
+
+      videoModalClose.addEventListener('click', closeVideoModal);
+
+      videoModal.addEventListener('click', (event) => {
+        if (event.target === videoModal) closeVideoModal();
+      });
+
+      window.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && videoModal.classList.contains('open')) {
+          closeVideoModal();
+        }
+      });
+    }
+
+  </script>
+</body>
+</html>
